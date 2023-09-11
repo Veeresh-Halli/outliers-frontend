@@ -1,0 +1,38 @@
+.container {
+    margin-top: 3%;
+}
+
+.login-container {
+    margin-top: 6%;
+}
+
+.task-container {
+    margin-top: 6%;
+}
+
+.margin-t4 {
+    margin-top: 4%;
+}
+
+.margin-t2 {
+    margin-top: 2%;
+}
+
+
+.link-property {
+    color: blue;
+    font-size: small;
+    cursor: pointer;
+}
+
+.error-color {
+    color: red;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.spacing {
+    margin-left: 10px !important;
+}
