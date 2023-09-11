@@ -3,7 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
 // import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
@@ -28,6 +33,7 @@ root.render(
         <Route path="/login" element={<Login />} />
       </Route>
       <Route path="*" element={<Page404 />} />
+      <Route exact path="/" element={<Navigate to="/login" />} />
     </Routes>
   </Router>
   // </React.StrictMode>
