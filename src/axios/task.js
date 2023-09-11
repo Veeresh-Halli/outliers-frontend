@@ -4,13 +4,30 @@ const taskAPI = axios.create({
   baseURL: process.env.REACT_APP_TASKS_BASE_URL,
 });
 
+function getCsrfToken() {
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith("csrftoken=")) {
+      return cookie.substring("csrftoken=".length, cookie.length);
+    }
+  }
+  return null;
+}
+
+const csrfToken = getCsrfToken();
+
 taskAPI.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("Token");
     const tempConfig = config;
-    if (token) {
-      tempConfig.headers["Authorization"] = token ? `Token ${token}` : "";
-    }
+    tempConfig.withCredentials = true;
+    tempConfig.crossDomain = true;
+    tempConfig.defaults = {};
+    tempConfig.defaults.withCredentials = true;
+    tempConfig.headers["X-CSRFToken"] = csrfToken;
+    tempConfig.headers.csrf = csrfToken;
+    tempConfig.headers["Authorization"] = token ? `Token ${token}` : "";
     return config;
   },
   (error) => {

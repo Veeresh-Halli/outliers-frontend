@@ -36,6 +36,7 @@ const Login = () => {
           await navigate("/dashboard");
         }
       } catch (error) {
+        console.log("ERROR LOGIN", error);
         if (error.message === "Network Error" && !error.response) {
           await setSnackBar(true);
         } else if (
